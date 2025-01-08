@@ -1,0 +1,5 @@
+sqlalchemy
+selenium
+webdriver_manager
+fastapi
+psycopg2

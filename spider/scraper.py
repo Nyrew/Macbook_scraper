@@ -41,16 +41,16 @@ def scrape_single(config, price_xpath, xpath_cookies_button=None):
 
     return config
 
-def scrape_alza_parallel(configs, price_xpath):
-    with ThreadPoolExecutor(max_workers=4) as executor:  # Můžeš upravit počet vláken
-        results = list(executor.map(lambda c: scrape_single(c, price_xpath), configs))
-    return results
-
-def scrape_istyle_parallel(configs, price_xpath, xpath_cookies_button):
-    with ThreadPoolExecutor(max_workers=3) as executor:  # Můžeš upravit počet vláken
-        results = list(executor.map(lambda c: scrape_single(c, price_xpath, xpath_cookies_button), configs))
-    return results
+def scrape_parallel(configs, price_xpath, xpath_cookies_button=None):
+    if xpath_cookies_button == None:
+        with ThreadPoolExecutor(max_workers=4) as executor:  # Můžeš upravit počet vláken
+            results = list(executor.map(lambda c: scrape_single(c, price_xpath), configs))
+        return results
+    else:
+        with ThreadPoolExecutor(max_workers=4) as executor:  # Můžeš upravit počet vláken
+            results = list(executor.map(lambda c: scrape_single(c, price_xpath, xpath_cookies_button), configs))
+        return results
 
 # if __name__ == "__main__":
-#     updated_configs = scrape_alza_parallel(CONFIG_ALZA, XPATH_PRODUCT_PRICE_ALZA)
+#     updated_configs = scrape_parallel(CONFIG_ALZA, XPATH_PRODUCT_PRICE_ALZA)
 #     print(updated_configs)
