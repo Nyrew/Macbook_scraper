@@ -5,22 +5,16 @@ WORKDIR /app
 
 # Zkopírování souboru requirements.txt a jeho instalace
 COPY requirements.txt .
-
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Nainstalování závislostí pro Playwright
-RUN apt-get update && apt-get install -y \
-    libgobject-2.0-0 \
-    libglib2.0-0 \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libglib2.0-dev \
     libnss3 \
-    libnssutil3 \
-    libsmime3 \
-    libnspr4 \
-    libdbus-1-3 \
     libatk1.0-0 \
     libatk-bridge2.0-0 \
     libcups2 \
-    libgio2.0-0 \
+    libdbus-1-3 \
     libdrm2 \
     libexpat1 \
     libxcb1 \
@@ -36,12 +30,13 @@ RUN apt-get update && apt-get install -y \
     libpango-1.0-0 \
     libcairo2 \
     libasound2 \
-    --no-install-recommends \
+    wget \
+    curl \
+    unzip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-
 # Instalace Playwright a jeho prohlížečů
-RUN pip install playwright && playwright install
+RUN pip install playwright && playwright install-deps && playwright install
 
 # Zkopírování celé aplikace do kontejneru
 COPY . .
