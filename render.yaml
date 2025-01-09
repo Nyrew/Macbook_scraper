@@ -1,7 +1,10 @@
 services:
   - type: web
-    name: fastapi-app
-    env: python
+    name: web-scraper
+    env: docker
+    docker:
+      image: nyrew/web_scraper:updated
+    envVars:
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
