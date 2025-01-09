@@ -1,6 +1,6 @@
-sqlalchemy
-selenium
-webdriver_manager
-fastapi
-psycopg2
+fastapi==0.100.0
+playwright==1.40.0
+sqlalchemy==2.0.0
+psycopg2-binary==2.9.7
+datetime
 uvicorn

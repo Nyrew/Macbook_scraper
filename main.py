@@ -20,8 +20,7 @@ def scrape_data():
         
         scraped_data_istyle = scrape_parallel(
             CONFIG_ISTYLE,
-            XPATH_PRODUCT_PRICE_ISTYLE,
-            XPATH_COOKIES_BUTTON_ISTYLE
+            XPATH_PRODUCT_PRICE_ISTYLE
         )
         scraped_data_alza = scrape_parallel(
             CONFIG_ALZA, 
@@ -49,8 +48,7 @@ def get_products():
 def test_scrape():
     scraped_data_istyle = scrape_parallel(
             CONFIG_ISTYLE,
-            XPATH_PRODUCT_PRICE_ISTYLE,
-            XPATH_COOKIES_BUTTON_ISTYLE
+            XPATH_PRODUCT_PRICE_ISTYLE
         )
     print(scraped_data_istyle)
     return {"status": "success", "data": scraped_data_istyle}
@@ -110,3 +108,4 @@ def fetch_all_data():
 
     except Exception as e:
         print("Error:", e)
+    
