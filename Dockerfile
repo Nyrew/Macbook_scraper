@@ -1,18 +1,16 @@
-# Použijte oficiální Playwright image jako základ
-FROM mcr.microsoft.com/playwright:v1.49.1-jammy
+# Použijte Playwright image s verzí 1.40.0
+FROM mcr.microsoft.com/playwright:v1.40.0-jammy
 
 # Nastavte pracovní adresář v kontejneru
 WORKDIR /app
-
-# Nainstalujte Python a pip
-RUN apt-get update && apt-get install -y python3 python3-pip && \
-    rm -rf /var/lib/apt/lists/*
 
 # Zkopírujte requirements.txt do pracovního adresáře
 COPY requirements.txt .
 
 # Nainstalujte závislosti
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN apt-get update && apt-get install -y python3 python3-pip && \
+    rm -rf /var/lib/apt/lists/* && \
+    pip3 install --no-cache-dir -r requirements.txt
 
 # Zkopírujte zbytek kódu aplikace do pracovního adresáře
 COPY . .
