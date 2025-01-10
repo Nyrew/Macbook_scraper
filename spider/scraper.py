@@ -20,7 +20,7 @@ def scrape_single(config, price_xpath):
         })
 
         print(f"Navigating to {config['url']}")
-        page.goto(config['url'], timeout=60000)
+        page.goto(config['url'], timeout=600000)
         print("URL logged successfuly")
         try:            
             page.wait_for_selector(f"xpath={price_xpath}", timeout=5000)
