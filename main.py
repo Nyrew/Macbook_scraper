@@ -6,9 +6,6 @@ from database.models import Base, Product
 from database.crud import save_scraped_data, get_all_data
 from datetime import datetime
 import psycopg2
-import subprocess
-
-subprocess.run(["playwright", "install"], check=True)
 
 app = FastAPI()
 
