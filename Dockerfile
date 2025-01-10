@@ -1,9 +1,5 @@
-# Použijte oficiální Python image jako základ
-FROM python:3.9-slim
-
-# Nainstalujte Playwright a jeho závislosti
-RUN pip install playwright
-RUN playwright install
+# Použijte oficiální Playwright image jako základ
+FROM mcr.microsoft.com/playwright:v1.49.1-jammy
 
 # Nastavte pracovní adresář v kontejneru
 WORKDIR /app
@@ -16,6 +12,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Zkopírujte zbytek kódu aplikace do pracovního adresáře
 COPY . .
+
 
 # Otevřete port, na kterém bude aplikace běžet
 EXPOSE 8000
