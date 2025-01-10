@@ -1,11 +1,14 @@
 import requests
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 #url = "https://web-scraper-ihnl.onrender.com/test-selenium"
-url = "https://docker-scraper-573o.onrender.com/scrape" # docker - render
+url = "https://macbook-scraper.onrender.com/test-selenium" # docker - render
 #url = "http://localhost:8000/scrape" # docker - local
 
 try:
-    response = requests.post(url)
+    response = requests.get(url, verify=False)
     response.raise_for_status()  # Vyvolá chybu, pokud HTTP status není 200
     data = response.json()
     print("Response from Render Selenium endpoint:")
