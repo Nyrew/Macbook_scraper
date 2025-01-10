@@ -1,5 +1,9 @@
-# Použijte oficiální Playwright image jako základ
-FROM mcr.microsoft.com/playwright:v1.49.1-jammy
+# Použijte oficiální Python image jako základ
+FROM python:3.9-slim
+
+# Nainstalujte Playwright a jeho závislosti
+RUN pip install playwright
+RUN playwright install
 
 # Nastavte pracovní adresář v kontejneru
 WORKDIR /app
