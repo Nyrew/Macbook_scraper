@@ -19,14 +19,16 @@ def scrape_single(config, price_xpath):
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
         })
 
-        page.goto(config['url'])
-
+        print(f"Navigating to {config['url']}")
+        page.goto(config['url'], timeout=60000)
+        print("URL logged successfuly")
         try:            
             page.wait_for_selector(f"xpath={price_xpath}", timeout=5000)
 
             element = page.locator(f"xpath={price_xpath}")
             if element:
                 price = element.inner_text()
+                print("found element")
                 config['price'] = price.replace('\xa0', '').replace(',-', ''). replace(' ', '').replace('Kč', '')
             else:
                 print("Price element not found.")
